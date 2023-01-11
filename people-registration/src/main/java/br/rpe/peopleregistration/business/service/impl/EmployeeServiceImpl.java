@@ -14,7 +14,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	@Override
-	public Employee save(Employee employee) {
+	public Employee create (Employee employee) {
 		return employeeRepository.save(employee);
 	}
 
@@ -30,7 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee findByName(String name) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
