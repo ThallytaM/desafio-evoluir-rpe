@@ -7,7 +7,7 @@ import br.rpe.peopleregistration.model.entity.Employee;
 @Service
 public interface EmployeeService {
 
-	public Employee save(Employee client);
+	public Employee create (Employee client);
 	
 	public Employee update(Employee client);
 	

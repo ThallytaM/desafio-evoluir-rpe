@@ -34,11 +34,11 @@ public class ClientController {
 	
 	@ApiOperation(value = "Adicionar um Cliente")
 	@PostMapping
-	public ResponseEntity save(@RequestBody ClientDto dto) {
+	public ResponseEntity create (@RequestBody ClientDto dto) {
 		try {
 			Client entity = converterService.dtoToClient(dto);
 			
-			entity = clientService.save(entity);
+			entity = clientService.create(entity);
 			dto = converterService.clientToDto(entity);
 			return new ResponseEntity(dto, HttpStatus.CREATED);
 			
@@ -61,7 +61,7 @@ public class ClientController {
 			}
 			
 			Client entity = converterService.dtoToClient(dto);
-			entity = clientService.save(entity);
+			entity = clientService.create(entity);
 			dto = converterService.clientToDto(entity);
 			
 			return ResponseEntity.ok(dto);

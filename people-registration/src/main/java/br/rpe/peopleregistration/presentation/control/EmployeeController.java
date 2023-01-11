@@ -32,11 +32,11 @@ public class EmployeeController {
 	
 	@ApiOperation(value = "Adicionar um Funcionário")
 	@PostMapping
-	public ResponseEntity save(@RequestBody EmployeeDto dto) {
+	public ResponseEntity create (@RequestBody EmployeeDto dto) {
 		try {
 			Employee entity = converterService.dtoToEmployee(dto);
 			
-			entity = employeeService.save(entity);
+			entity = employeeService.create(entity);
 			dto = converterService.employeeToDto(entity);
 			return new ResponseEntity(dto, HttpStatus.CREATED);
 			
@@ -58,7 +58,7 @@ public class EmployeeController {
 			}
 			
 			Employee entity = converterService.dtoToEmployee(dto);
-			entity = employeeService.save(entity);
+			entity = employeeService.create(entity);
 			dto = converterService.employeeToDto(entity);
 			
 			return ResponseEntity.ok(dto);

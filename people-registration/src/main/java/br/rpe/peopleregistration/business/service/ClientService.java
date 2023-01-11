@@ -7,7 +7,7 @@ import br.rpe.peopleregistration.model.entity.Client;
 @Service
 public interface ClientService {
 	
-	public Client save(Client client);
+	public Client create(Client client);
 	
 	public Client update(Client client);
 	
