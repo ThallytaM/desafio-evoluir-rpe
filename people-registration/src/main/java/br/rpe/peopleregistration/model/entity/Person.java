@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class Person implements Serializable{
@@ -22,16 +24,16 @@ public abstract class Person implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	@Column(unique = true, nullable = false)
 	private String cpf;
-	@NotNull
+	
+	@Size(min = 4, max = 50)
 	private String name;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Address address;
 	
-	@NotNull
-	@Pattern(regexp="(\\(d{2})\\d{5}-\\d{4}$")
+	@Column(nullable = false)
 	private String telephone;
 
 	public Long getId() {

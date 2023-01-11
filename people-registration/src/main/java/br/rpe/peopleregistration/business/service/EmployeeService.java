@@ -16,4 +16,7 @@ public interface EmployeeService {
 	public Employee findByName(String name);
 	
 	public Employee findById(Long id);
+	
+	public Employee findByCpf(String cpf) ;
+
 }

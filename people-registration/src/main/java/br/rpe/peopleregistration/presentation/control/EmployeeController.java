@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.rpe.peopleregistration.business.service.EmployeeService;
 import br.rpe.peopleregistration.business.service.impl.ConverterService;
+import br.rpe.peopleregistration.model.entity.Client;
 import br.rpe.peopleregistration.model.entity.Employee;
+import br.rpe.peopleregistration.presentation.dto.ClientDto;
 import br.rpe.peopleregistration.presentation.dto.EmployeeDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -78,7 +80,7 @@ public class EmployeeController {
 		}
 	}
 	
-	@ApiOperation(value = "Consultar um Funcionário")
+	@ApiOperation(value = "Consultar um Funcionário por id")
 	@GetMapping("{id}")
 	public ResponseEntity findById(@PathVariable("id")Long id) {
 		
@@ -93,4 +95,19 @@ public class EmployeeController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}	
+	@ApiOperation(value = "Consultar um Funcionário por CPF")
+	@GetMapping("findCpf/{cpf}")
+	public ResponseEntity findByCpf(@PathVariable("cpf")String cpf) {
+		
+		try {
+			Employee entity = employeeService.findByCpf(cpf);
+			
+			EmployeeDto dto = converterService.employeeToDto(entity);
+			
+			return ResponseEntity.ok(dto);
+			
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
 }

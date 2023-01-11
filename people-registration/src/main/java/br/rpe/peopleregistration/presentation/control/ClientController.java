@@ -37,9 +37,9 @@ public class ClientController {
 	public ResponseEntity create (@RequestBody ClientDto dto) {
 		try {
 			Client entity = converterService.dtoToClient(dto);
-			
 			entity = clientService.create(entity);
 			dto = converterService.clientToDto(entity);
+			
 			return new ResponseEntity(dto, HttpStatus.CREATED);
 			
 		} catch (Exception e) {
@@ -81,20 +81,33 @@ public class ClientController {
 		}
 	}
 	
-	@ApiOperation(value = "Consultar um Cliente")
+	@ApiOperation(value = "Consultar um Cliente por ID")
 	@GetMapping("{id}")
 	public ResponseEntity findById(@PathVariable("id")Long id) {
 		
 		try {
-			Client entity = clientService.findById(id);
-			
-			ClientDto dto = converterService.clientToDto(entity);
-			
+			Client entity = clientService.findById(id);		
+			ClientDto dto = converterService.clientToDto(entity);			
 			return ResponseEntity.ok(dto);
 			
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}	
+	
+	@ApiOperation(value = "Consultar um Cliente por CPF")
+	@GetMapping("findCpf/{cpf}")
+	public ResponseEntity findByCpf(@PathVariable("cpf")String cpf) {
+		
+		try {
+			Client entity = clientService.findByCpf(cpf);		
+			ClientDto dto = converterService.clientToDto(entity);			
+			return ResponseEntity.ok(dto);
+			
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
 }
 

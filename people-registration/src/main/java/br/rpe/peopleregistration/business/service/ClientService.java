@@ -1,5 +1,7 @@
 package br.rpe.peopleregistration.business.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import br.rpe.peopleregistration.model.entity.Client;
@@ -17,5 +19,6 @@ public interface ClientService {
 	
 	public Client findById(Long id);
 	
+	public Client findByCpf(String cpf);
 
 }

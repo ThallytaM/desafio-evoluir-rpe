@@ -1,7 +1,11 @@
 package br.rpe.peopleregistration.business.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.google.common.base.Optional;
 
 import br.rpe.peopleregistration.business.service.ClientService;
 import br.rpe.peopleregistration.model.entity.Client;
@@ -15,6 +19,9 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public Client create(Client client) {
+		if((findByCpf(client.getCpf()) != null)){
+			throw new IllegalStateException("Cliente ja cadastrado!");
+		}
 		return clientRepository.save(client);
 	}
 
@@ -37,7 +44,13 @@ public class ClientServiceImpl implements ClientService{
 	public Client findById(Long id) {
 		return clientRepository.findById(id).get();
 	}
-	
-	
 
+	@Override
+	public Client findByCpf(String cpf) {
+		if(cpf == null) {
+			throw new IllegalStateException("CPF cannot be null");
+		}
+		Optional<Client> optional = clientRepository.findByCpf(cpf);
+		return optional.isPresent() ? optional.get() : null;
+	}
 }

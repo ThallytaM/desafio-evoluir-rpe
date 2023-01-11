@@ -3,6 +3,7 @@ package br.rpe.peopleregistration.model.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-
-
 @Entity
 @Table
 public class Address implements Serializable{
@@ -20,14 +19,16 @@ public class Address implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Pattern(regexp="(\\d{5}-\\d{3}")
-	@NotNull
+	@Column(nullable = false)
 	private String zipCode;
 	private String street;
 	private String number;
 	private String complement;
 	private String district;
+	@Column(nullable = false)
 	private String city;
+	@Column(nullable = false)
+	private String state;
 	
 	public Address() {
 	}
@@ -88,9 +89,17 @@ public class Address implements Serializable{
 		this.city = city;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(city, complement, district, id, number, street, zipCode);
+		return Objects.hash(city, complement, district, id, number, state, street, zipCode);
 	}
 
 	@Override
@@ -104,12 +113,9 @@ public class Address implements Serializable{
 		Address other = (Address) obj;
 		return Objects.equals(city, other.city) && Objects.equals(complement, other.complement)
 				&& Objects.equals(district, other.district) && Objects.equals(id, other.id)
-				&& Objects.equals(number, other.number) && Objects.equals(street, other.street)
-				&& Objects.equals(zipCode, other.zipCode);
+				&& Objects.equals(number, other.number) && Objects.equals(state, other.state)
+				&& Objects.equals(street, other.street) && Objects.equals(zipCode, other.zipCode);
 	}
-	
-	
-	
 	
 
 }
