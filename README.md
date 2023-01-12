@@ -4,7 +4,7 @@
 
 ## Descrição
 
-Sistema desenvolvido para o Desafio técnico Dev Java do programa de estágio EVOLUIR da RPE TECH.
+Sistema desenvolvido para o Desafio técnico em Desenvolvimento Java do programa de estágio EVOLUIR da RPE TECH.
 
 Esta aplicação permite a manutenção do cadastro de pessoas (Funcionários e clientes) de uma empresa, contendo dados básicos, como: nome, telefone, endereço etc. 
 
