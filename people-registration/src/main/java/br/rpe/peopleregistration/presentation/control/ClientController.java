@@ -61,7 +61,7 @@ public class ClientController {
 			}
 			
 			Client entity = converterService.dtoToClient(dto);
-			entity = clientService.create(entity);
+			entity = clientService.update(entity);
 			dto = converterService.clientToDto(entity);
 			
 			return ResponseEntity.ok(dto);

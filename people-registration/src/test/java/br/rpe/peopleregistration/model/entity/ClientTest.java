@@ -32,11 +32,7 @@ class ClientTest {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	    validator = factory.getValidator();
 	    
-	    client = new Client();
-		client.setCpf("111.111.111-11");
-		client.setId(1L);
-		client.setAddress(new Address());
-		client.setTelephone("(11) 11111-1111");
+	    client = new Client(1L, "111.111.111-11", "Maria", new Address(), "(83) 22222-2222");
 	}
 	
 	@ParameterizedTest

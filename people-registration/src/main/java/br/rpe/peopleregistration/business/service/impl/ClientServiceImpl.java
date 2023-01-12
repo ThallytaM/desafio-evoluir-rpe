@@ -1,6 +1,7 @@
 package br.rpe.peopleregistration.business.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +28,30 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public Client update(Client client) {
-		return clientRepository.save(client);
+		Client clientUp = findById(client.getId());
+		if(clientUp == null ) {
+			throw new NoSuchElementException("Cliente inexistente!");
+		}
+		clientUp.getAddress().setCity(client.getAddress().getCity());
+		clientUp.getAddress().setComplement(client.getAddress().getComplement());
+		clientUp.getAddress().setCity(client.getAddress().getCity());
+		clientUp.getAddress().setState(client.getAddress().getState());
+		clientUp.getAddress().setZipCode(client.getAddress().getZipCode());
+		
+		clientUp.setCpf(client.getCpf());
+		clientUp.setLastServiceDate(client.getLastServiceDate());
+		clientUp.setName(client.getName());
+		clientUp.setTelephone(client.getTelephone());
+		
+		return clientRepository.save(clientUp);
 	}
 
 	@Override
 	public void delete(Long id) {
+	//	Client client = findById(id);
+		if(findById(id) == null) {
+			throw new NoSuchElementException("Cliente inexistente!");
+		}
 		clientRepository.deleteById(id);;
 	}
 

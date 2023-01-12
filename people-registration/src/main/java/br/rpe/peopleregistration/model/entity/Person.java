@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+
 @MappedSuperclass
 public abstract class Person implements Serializable{
 	
@@ -35,6 +37,19 @@ public abstract class Person implements Serializable{
 	
 	@Column(nullable = false)
 	private String telephone;
+	
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Person(Long id, String cpf, @Size(min = 4, max = 50) String name, Address address, String telephone) {
+		super();
+		this.id = id;
+		this.cpf = cpf;
+		this.name = name;
+		this.address = address;
+		this.telephone = telephone;
+	}
 
 	public Long getId() {
 		return id;
