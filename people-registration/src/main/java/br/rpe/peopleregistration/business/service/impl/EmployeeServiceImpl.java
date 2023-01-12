@@ -1,5 +1,7 @@
 package br.rpe.peopleregistration.business.service.impl;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +28,29 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee update(Employee employee) {
-		return employeeRepository.save(employee);
+		Employee employeeUp = findById(employee.getId());
+		if(employeeUp == null) {
+			throw new NoSuchElementException("Funcionário inexistente!");
+		}
+		employeeUp.getAddress().setCity(employee.getAddress().getCity());
+		employeeUp.getAddress().setComplement(employee.getAddress().getComplement());
+		employeeUp.getAddress().setCity(employee.getAddress().getCity());
+		employeeUp.getAddress().setState(employee.getAddress().getState());
+		employeeUp.getAddress().setZipCode(employee.getAddress().getZipCode());
+		
+		employeeUp.setCpf(employee.getCpf());
+		employeeUp.setHiringDate(employee.getHiringDate());
+		employeeUp.setName(employee.getName());
+		employeeUp.setTelephone(employee.getTelephone());
+		
+		return employeeRepository.save(employeeUp);
 	}
 
 	@Override
 	public void delete(Long id) {
+		if(findById(id) == null) {
+			throw new NoSuchElementException("Funcionário inexistente!");
+		}
 		employeeRepository.deleteById(id);
 	}
 

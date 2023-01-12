@@ -48,7 +48,6 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public void delete(Long id) {
-	//	Client client = findById(id);
 		if(findById(id) == null) {
 			throw new NoSuchElementException("Cliente inexistente!");
 		}

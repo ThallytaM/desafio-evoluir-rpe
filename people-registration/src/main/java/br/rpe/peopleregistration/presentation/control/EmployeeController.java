@@ -37,9 +37,9 @@ public class EmployeeController {
 	public ResponseEntity create (@RequestBody EmployeeDto dto) {
 		try {
 			Employee entity = converterService.dtoToEmployee(dto);
-			
 			entity = employeeService.create(entity);
 			dto = converterService.employeeToDto(entity);
+			
 			return new ResponseEntity(dto, HttpStatus.CREATED);
 			
 		} catch (Exception e) {
@@ -60,7 +60,7 @@ public class EmployeeController {
 			}
 			
 			Employee entity = converterService.dtoToEmployee(dto);
-			entity = employeeService.create(entity);
+			entity = employeeService.update(entity);
 			dto = converterService.employeeToDto(entity);
 			
 			return ResponseEntity.ok(dto);
