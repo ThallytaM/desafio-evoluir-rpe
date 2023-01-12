@@ -57,9 +57,5 @@ Em seguida, abra o projeto em uma IDE (utilizei o [Spring Tool Suite](https://sp
 
 Faça a alteração das variáveis de ambiente no arquivo application.properties, configurando o local, o nome de usuário e a senha do banco dados (utilizei PostgreSQL).
 
-Após executar o projeto, basta acessar o seguinte endereço para visualizar e utilizar os endpoints da aplicação:
-
-```
-http://localhost:8080/swagger-ui.html#/
-```
+Após executar o projeto, [clique aqui](http://localhost:8080/swagger-ui.html#/) para visualizar e utilizar os endpoints da aplicação.
 
