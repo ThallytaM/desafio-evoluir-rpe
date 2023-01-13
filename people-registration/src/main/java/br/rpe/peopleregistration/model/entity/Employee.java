@@ -2,6 +2,7 @@ package br.rpe.peopleregistration.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,11 +17,14 @@ import br.rpe.peopleregistration.model.enums.Status;
 public class Employee extends Person{
 
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Function function;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Status status;
 	
+	@Column(nullable = false)
 	private Date hiringDate;
 	
 	public Employee() {

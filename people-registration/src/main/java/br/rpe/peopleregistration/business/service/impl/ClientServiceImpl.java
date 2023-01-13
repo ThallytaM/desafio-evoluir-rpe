@@ -1,6 +1,5 @@
 package br.rpe.peopleregistration.business.service.impl;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,7 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public Client create(Client client) {
+			
 		if((findByCpf(client.getCpf()) != null)){
 			throw new IllegalStateException("Cliente ja cadastrado!");
 		}
@@ -48,7 +48,7 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public void delete(Long id) {
-		if(findById(id) == null) {
+		if(findById(id) == null || id == null) {
 			throw new NoSuchElementException("Cliente inexistente!");
 		}
 		clientRepository.deleteById(id);;

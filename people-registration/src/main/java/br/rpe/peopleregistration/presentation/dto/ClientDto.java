@@ -3,6 +3,7 @@ package br.rpe.peopleregistration.presentation.dto;
 import java.util.Date;
 
 import br.rpe.peopleregistration.model.entity.Address;
+import br.rpe.peopleregistration.model.entity.Client;
 
 public class ClientDto {
 	
@@ -12,6 +13,12 @@ public class ClientDto {
 	private Address address;	
 	private String telephone;
 	private Date lastServiceDate;
+	
+	public ClientDto(Client c) {
+	}
+	public ClientDto() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Long getId() {
 		return id;

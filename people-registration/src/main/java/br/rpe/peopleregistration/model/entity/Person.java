@@ -11,12 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
+//@Entity
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 public abstract class Person implements Serializable{
 	
@@ -26,20 +27,21 @@ public abstract class Person implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	//@CPF(message = "CPF inválido")
 	@Column(unique = true, nullable = false)
 	private String cpf;
 	
 	@Size(min = 4, max = 50)
+	@Column(nullable = false)
 	private String name;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Address address;
 	
-	@Column(nullable = false)
+	@Column(length = 14, nullable = false)
 	private String telephone;
 	
 	public Person() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Person(Long id, String cpf, @Size(min = 4, max = 50) String name, Address address, String telephone) {
