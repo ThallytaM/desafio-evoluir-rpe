@@ -70,7 +70,7 @@ public class ClientController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}	
 	}
-	@ApiOperation(value = "Remover um Cliente")
+	@ApiOperation(value = "Remove um Cliente")
 	@DeleteMapping({"{id}"})
 	public ResponseEntity delete(@PathVariable("id") Long id) {
 		try {
